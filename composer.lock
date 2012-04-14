@@ -1,0 +1,37 @@
+{
+    "hash": "78c79add3035e94998968cdcd661b2a4",
+    "packages": [
+        {
+            "package": "doctrine/common",
+            "version": "dev-master",
+            "source-reference": "4f78640efd3c9c5d790acdb99bcc9f9c10a1587a"
+        },
+        {
+            "package": "doctrine/mongodb",
+            "version": "dev-master",
+            "source-reference": "727a12d25ba12d18aa293bc6eb61f203a9545912"
+        },
+        {
+            "package": "symfony/console",
+            "version": "dev-master",
+            "source-reference": "8e3c42aa976f18a9bfcb0694553e5f99def3309c"
+        },
+        {
+            "package": "symfony/http-foundation",
+            "version": "dev-master",
+            "source-reference": "b9aceabb83f3d03fe451cdd867d987e863e7a25e",
+            "alias": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "symfony/yaml",
+            "version": "dev-master",
+            "source-reference": "0647ee4ca69b60f9043256e89f8dbaa0cedd854c"
+        },
+        {
+            "package": "twig/twig",
+            "version": "1.6.x-dev",
+            "source-reference": "v1.6.5"
+        }
+    ],
+    "aliases": []
+}

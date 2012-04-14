@@ -1,0 +1,73 @@
+<html>
+ <head>
+  <title>Merlin eCom prototype 1</title>
+  <style>
+   html {
+    padding:0;
+    margin:0;
+    font-family: Helvetica, arial, sans;
+   }
+   body {
+    padding:0;
+    margin:0;
+    background-color:#777;
+   }
+   #pageColumn {
+    background-color:#fff;
+    margin:auto;
+    width:960px;
+    min-height:600px;
+   }
+   #header {
+    font-size:30px;
+    width:940px;
+    color:#0089ff;
+    padding:20px 10px;
+    border-bottom: 1px solid #777;
+   }
+   #menu {
+    width:920px;
+    margin:auto;
+    text-align:center;
+    font-size:11px;
+   }
+   #menu ul{
+    padding:0;
+    margin:0;
+   }
+   #menu ul li{
+    display:inline-block;
+    padding:2px;
+    list-style:none;
+   }
+   #menu ul li a{
+    padding:2px 4px;;
+    display:inline-block;
+    border-radius: 4px;
+   }
+   #menu ul li a:link{
+    color:#777;
+   }
+   #menu ul li a:visited {
+    color:#777;
+   }
+   #menu ul li a.active {
+    color:#fff;
+    background-color:#777;
+   }
+  </style>
+ </head>
+ <body>
+  <div id="pageColumn">
+   <div id="header">
+    <a>{{title}}</a>
+   </div>
+   <div id="menu">
+    {{menu}}
+   </div>
+   <div id=\"\">
+    {{content}}
+   </div>
+  </div>
+ </body>
+</html>

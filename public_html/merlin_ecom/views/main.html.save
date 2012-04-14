@@ -1,0 +1,17 @@
+<html>
+	<head>
+		<title>Merlin Prototype eCommerce Store</title>
+		<style>
+		html {
+		padding:0;
+		margin:0;
+		}
+	body {
+	}
+	</style>
+	</head>
+	<body>
+		<div>
+		</div>
+	</body>
+</html>
