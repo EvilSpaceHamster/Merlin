@@ -3,15 +3,23 @@
 		<title>{{ page.title }}</title>
 		<meta name="keywords" content="{{ page.keywords }}"/>
 		<meta name="description" content="{{ page.description }}"/>
+		<script src="//{{page.staticURL}}/js/jquery-1.7.2.min.js"></script>
+		<script src="//{{page.staticURL}}/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="//{{ page.staticURL }}/css/bootstrap.css"/>
 	</head>
 	<body>
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container">
-					<ul>
+					<a class="brand" href="/admin/" >Merlin</a>
+					<ul class="nav">
+						<li><a {% if page.currentURL == "/admin/pages/" %} class="active" {% endif %} href="/admin/pages">Pages</a></li>
+						<li><a {% if page.currentURL == "/admin/posts/" %} class="active" {% endif %} href="/admin/posts/">Posts</a></li>
+						<li><a {% if page.currentURL == "/admin/templates/" %} class="active" {% endif %} href="/admin/templates/">Templates</a></li>
+						<li><a {% if page.currentURL == "/admin/gallery/" %} class="active" {% endif %} href="/admin/gallery/">Gallery</a></li>
+						<li><a {% if page.currentURL == "/admin/url/" %} class="active" {% endif %} href="/admin/url/">URL Management</a></li>
 						
 					</ul>
-					<a class="brand">Merlin</a>
 				</div>
 			</div>
 		</div>

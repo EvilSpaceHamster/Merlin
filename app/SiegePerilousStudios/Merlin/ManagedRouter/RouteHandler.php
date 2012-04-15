@@ -25,6 +25,8 @@ abstract class RouteHandler {
 		$page["title"] = $this->app->route->title;
 		$page["description"] = $this->app->route->description;
 		$page["keywords"] = implode(",",$this->app->route->keywords);
+		$page["staticURL"] = $this->app->staticURL;
+		$page["currentURL"] = $this->app->route->uri;
 		$this->templateVariables["page"]=$page;
 	}
 }

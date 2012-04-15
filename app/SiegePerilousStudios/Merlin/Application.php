@@ -37,7 +37,7 @@ class Application {
 	public $baseURL = "www.contentbymerlin.com/app.php/";
 	public $rewritten = false;
 	
-	public static $
+	public $staticURL = "static.contentbymerlin.com";
 	
 	
 	private $plugins = array();
