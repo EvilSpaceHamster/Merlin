@@ -13,6 +13,7 @@ class Route {
 	/** @ODM\Id(strategy="AUTO") */
 	public $id;
 	
+	
 	/** @ODM\String @ODM\Index */
 	public $uri;
 	

@@ -9,7 +9,10 @@ namespace SiegePerilousStudios\Merlin\Admin;
 class AdminHandler extends \SiegePerilousStudios\Merlin\ManagedRouter\RouteHandler{
 	
 	public function route(){
-		echo "admin!";
+		
+		$this->globalTemplate = "admin/global.twig";
+		
+		$this->render();
 	}
 }
 

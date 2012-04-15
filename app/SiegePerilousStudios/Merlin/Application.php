@@ -3,6 +3,7 @@
 namespace SiegePerilousStudios\Merlin;
 
 use Symfony\Component\HttpFoundation\Request,
+	Symfony\Component\HttpFoundation\Response,
 	Doctrine\Common\ClassLoader,
 	Doctrine\Common\Annotations\AnnotationReader,
 	Doctrine\ODM\MongoDB\DocumentManager,
@@ -29,21 +30,34 @@ class Application {
 	 * @var Doctrine\ODM\MongoDB\DocumentManager
 	 */
 	private $database;
+	
+	/**
+	 *
+	 * @var Symfony\Component\HttpFoundation\Response
+	 */
 	public $response;
 	
 	public $route;
-	
 	public $basePath = "/srv/www/contentbymerlin.com/";
-	public $baseURL = "www.contentbymerlin.com/app.php/";
+	public $baseURL = "//www.contentbymerlin.com/app.php/";
 	public $rewritten = false;
 	
-	public $staticURL = "static.contentbymerlin.com";
+	public $mime = "text/html";
+	
+	public $status = 200;
+	
+	public $appState;
+	
+	public $staticURL = "//static.contentbymerlin.com";
 	
 	
 	private $plugins = array();
 
-	public function __construct() {
+	public function __construct($appState = "production") {
 		//whatever
+		
+		$this->appState = $appState;
+		
 		$this->generateRequest();
 	}
 	
@@ -52,8 +66,11 @@ class Application {
 	}
 	
 	public function getHandler($handlerName){
+		//todo: make this configgable
 		$handlers = array(
-			"AdminHandler" => "SiegePerilousStudios\Merlin\Admin\AdminHandler"
+			"AdminHandler" => "SiegePerilousStudios\Merlin\Admin\AdminHandler",
+			"URLManagementHandler" => "SiegePerilousStudios\Merlin\Admin\URLManagement\URLManagementHandler",
+			"RouteAPIHandler" => "SiegePerilousStudios\Merlin\API\RouteAPIHandler"
 		);
 		
 		if (isset($handlers[$handlerName]) && class_exists($handlers[$handlerName]) && is_subclass_of($handlers[$handlerName], "SiegePerilousStudios\Merlin\ManagedRouter\RouteHandler")){
@@ -91,10 +108,14 @@ class Application {
 		$handler = $this->getHandler($route->handlerName);
 		if ($handler !== false){
 			$this->route = $route;
-			$handler->route();
+			$content = $handler->route();
 		} else {
-			echo "Handler not available: ".$route->handlerName;
+			$this->status= 501;
+			$content = "Handler not available: ".$route->handlerName;
 		}
+		$this->response->create($content, $this->status, array(
+			"content"
+		))
 		
 	}
 
@@ -103,7 +124,8 @@ class Application {
 		if (!$this->rewritten){
 			$router->stripURIOneLevel(true);
 		}
-		return $router->getRoute();
+		$this->route= $router->getRoute();
+		return $this->route;
 	}
 
 	public function hasClearance($authorisation) {
