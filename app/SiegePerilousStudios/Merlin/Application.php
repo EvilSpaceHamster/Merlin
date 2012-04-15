@@ -33,9 +33,12 @@ class Application {
 	
 	public $route;
 	
-	public static $basePath = "/srv/www/contentbymerlin.com/";
-	public static $baseURL = "www.contentbymerlin.com/app.php/";
-	public static $rewritten = false;
+	public $basePath = "/srv/www/contentbymerlin.com/";
+	public $baseURL = "www.contentbymerlin.com/app.php/";
+	public $rewritten = false;
+	
+	public static $
+	
 	
 	private $plugins = array();
 
@@ -97,7 +100,7 @@ class Application {
 
 	private function findHandlerForURI($uri) {
 		$router = new ManagedRouter\Router($this);
-		if (!self::$rewritten){
+		if (!$this->rewritten){
 			$router->stripURIOneLevel(true);
 		}
 		return $router->getRoute();
@@ -121,22 +124,22 @@ class Application {
 
 		if (empty($this->database)){
 			$config = new Configuration();
-			$config->setProxyDir(self::$basePath . 'cache');
+			$config->setProxyDir($this->basePath . 'cache');
 			$config->setProxyNamespace('Proxies');
 			$config->setDefaultDB("merlin");
-			$config->setHydratorDir(self::$basePath . 'cache');
+			$config->setHydratorDir($this->basePath . 'cache');
 			$config->setHydratorNamespace('Hydrators');
 			
 			AnnotationDriver::registerAnnotationClasses();
 			$reader = new \Doctrine\Common\Annotations\FileCacheReader(
 					new AnnotationReader(),
-					self::$basePath . 'cache',
+					$this->basePath . 'cache',
 					$debug = true
 					);
 			
 			//add all document paths for all plugins/modules
 			$documentPaths = array(
-				self::$basePath."app/SiegePerilousStudios/Merlin/ManagedRouter/Model"
+				$this->basePath."app/SiegePerilousStudios/Merlin/ManagedRouter/Model"
 			);
 			
 			
