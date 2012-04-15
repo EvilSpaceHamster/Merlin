@@ -1,5 +1,5 @@
 {
-    "hash": "78c79add3035e94998968cdcd661b2a4",
+    "hash": "3b2a6a2899fda3b0fac123907bdba6e8",
     "packages": [
         {
             "package": "doctrine/common",
@@ -10,6 +10,11 @@
             "package": "doctrine/mongodb",
             "version": "dev-master",
             "source-reference": "727a12d25ba12d18aa293bc6eb61f203a9545912"
+        },
+        {
+            "package": "doctrine/mongodb-odm",
+            "version": "dev-master",
+            "source-reference": "ed789d7e7d5a75d41b8d49e04a4c65bd97343a96"
         },
         {
             "package": "symfony/console",

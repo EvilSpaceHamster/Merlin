@@ -23,8 +23,15 @@ class Application {
 	 * @var Symfony\Component\HttpFoundation\Request
 	 */
 	private $request;
+	
+	/**
+	 *
+	 * @var Doctrine\ODM\MongoDB\DocumentManager
+	 */
 	private $database;
 	public $response;
+	
+	public $route;
 	
 	public static $basePath = "/srv/www/contentbymerlin.com/";
 	public static $baseURL = "www.contentbymerlin.com/app.php/";
@@ -34,12 +41,22 @@ class Application {
 
 	public function __construct() {
 		//whatever
-
 		$this->generateRequest();
 	}
 	
 	public function registerPlugin($pluginDirectory){
 		//todo
+	}
+	
+	public function getHandler($handlerName){
+		$handlers = array(
+			"AdminHandler" => "SiegePerilousStudios\Merlin\Admin\AdminHandler"
+		);
+		
+		if (isset($handlers[$handlerName]) && class_exists($handlers[$handlerName]) && is_subclass_of($handlers[$handlerName], "SiegePerilousStudios\Merlin\ManagedRouter\RouteHandler")){
+			return new $handlers[$handlerName]($this);
+		}
+		return false;
 	}
 
 	private function generateRequest() {
@@ -62,31 +79,28 @@ class Application {
 		$this->redirect("/login/");
 	}
 
-	private function redirect($uri);
+	private function redirect($uri){
+		
+	}
 
 	public function run() {
-		echo "HELLO" . $this->request->getRequestUri();
-		exit;
-		/*
-		  $url = $this->request->getUri();
-		  $handlerName = $this->findHandlerForURI($url);
-		  if ($handlerName!==false){
-		  $handler = new $handlerName($this);
-		  }
-		 */
+		$route = $this->findHandlerForURI($this->getRequest()->getRequestUri());
+		$handler = $this->getHandler($route->handlerName);
+		if ($handler !== false){
+			$this->route = $route;
+			$handler->route();
+		} else {
+			echo "Handler not available: ".$route->handlerName;
+		}
+		
 	}
 
 	private function findHandlerForURI($uri) {
-		$handler; //= getHandler...
-		if (!empty($handler)) {
-			return $handler;
+		$router = new ManagedRouter\Router($this);
+		if (!self::$rewritten){
+			$router->stripURIOneLevel(true);
 		}
-		$subUri; //= uri down a level
-		if ($subUri === false) {
-			return false;
-		}
-
-		return findHandlerForUri($subUri);
+		return $router->getRoute();
 	}
 
 	public function hasClearance($authorisation) {
@@ -99,6 +113,10 @@ class Application {
 		return false;
 	}
 
+	/**
+	 *
+	 * @return Doctrine\ODM\MongoDB\DocumentManager
+	 */
 	public function getDatabase() {
 
 		if (empty($this->database)){
@@ -108,9 +126,13 @@ class Application {
 			$config->setDefaultDB("merlin");
 			$config->setHydratorDir(self::$basePath . 'cache');
 			$config->setHydratorNamespace('Hydrators');
-
-			$reader = new AnnotationReader();
-			$reader->setDefaultAnnotationNamespace('Doctrine\ODM\MongoDB\Mapping\\');
+			
+			AnnotationDriver::registerAnnotationClasses();
+			$reader = new \Doctrine\Common\Annotations\FileCacheReader(
+					new AnnotationReader(),
+					self::$basePath . 'cache',
+					$debug = true
+					);
 			
 			//add all document paths for all plugins/modules
 			$documentPaths = array(

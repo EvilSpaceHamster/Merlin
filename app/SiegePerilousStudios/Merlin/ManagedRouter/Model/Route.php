@@ -1,37 +1,40 @@
 <?php
 
 namespace SiegePerilousStudios\Merlin\ManagedRouter\Model;
+
+use \Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+
 /**
  *
- * @Document
+ * @ODM\Document
  */
 class Route {
 	
-	/** @Id(strategy="AUTO") */
+	/** @ODM\Id(strategy="AUTO") */
 	public $id;
 	
-	/** @String */
+	/** @ODM\String @ODM\Index */
 	public $uri;
 	
-	/** @String */
+	/** @ODM\String */
 	public $handlerName;
 	
-	/** @String */
+	/** @ODM\String */
 	public $title;
 	
-	/** @String */
+	/** @ODM\String */
 	public $description;
 	
-	/** @Collection */
+	/** @ODM\Collection */
 	public $keywords = array();
 	
-	/** @String */
+	/** @ODM\String */
 	public $language;
 	
-	/** @String */
+	/** @ODM\String */
 	public $status;
 	
-	/** @String */
+	/** @ODM\String */
 	public $authorisation;
 	
 }

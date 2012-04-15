@@ -2,7 +2,7 @@
 	"require": {
 		"symfony/http-foundation": "2.*",
 		"twig/twig": "1.6.*",
-		"doctrine/mongodb":"*"
+		"doctrine/mongodb-odm":"*"
 	},
 	"autoload": {
 		"psr-0": {"SiegePerilousStudios":"app/"}
