@@ -48,15 +48,16 @@ class Application {
 	
 	public $appState;
 	
-	public $staticURL = "//static.contentbymerlin.com";
+	public $staticURL = "//static.contentbymerlin.com/";
 	
 	
 	private $plugins = array();
 
-	public function __construct($appState = "production") {
+	public function __construct($appState = "production"){
 		//whatever
 		
 		$this->appState = $appState;
+		
 		
 		$this->generateRequest();
 	}
@@ -113,10 +114,10 @@ class Application {
 			$this->status= 501;
 			$content = "Handler not available: ".$route->handlerName;
 		}
-		$this->response->create($content, $this->status, array(
-			"content"
-		))
-		
+		$this->response = new Response($content, $this->status, array(
+			"Content-Type" => $this->mime
+		));
+		$this->response->send();
 	}
 
 	private function findHandlerForURI($uri) {

@@ -1,34 +1,29 @@
 <div style="padding:20px;">
 	<h2>URL Management</h2>
-
+	<a style="float:right;top:-30px;position:relative;" class="newRoute btn btn-success">New Route</a>
 	<table class="table table-condensed">
 		<thead>
 			<tr>
 				<th>URI</th>
 				<th>Title</th>
 				<th>Handler</th>
+				<th>Authorisation</th>
 				<th></th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="routeContent">
 		{% for route in routes %}
-				<tr>
+				<tr id="routeRow{{route.id}}">
 					<td>{{route.uri}}</td>
 					<td>{{route.title}}</td>
 					<td>{{route.handlerName}}</td>
-					<td><a class="btn btn-primary btn-mini">Edit</a><a class="btn btn-danger btn-mini" style="margin-left:10px;">Delete</a></td>
+					<td>{{route.authorisation}}</td>
+					<td><a class="btn btn-mini{% if route.authorisation== "readonly" %} disabled {% else %} btn-primary editRoute {% endif %}" data-route-id= "{{route.id}}" >Edit</a>
+						<a class="btn btn-mini{% if route.authorisation== "readonly" %} disabled {% else %} btn-danger deleteRoute {% endif %}" data-route-id= "{{route.id}}" style="margin-left:10px;">Delete</a></td>
 				</tr>
 		{% endfor %}
-		</tbody>
-	</table>
-</div>
-
-<div class="modal">
-	<div class="modal-header">
-		<h3>Edit Route</h3>
+			</tbody>
+		</table>
 	</div>
-	<div class="modal-body">
-	</div>
-	<div class="modal-footer">
-	</div>
-</div>
+			{% include "admin/URLManagement/editModal.twig" ignore missing %}
+		<script src="{{ page.staticURL }}js/admin/URLManagement.js"></script>

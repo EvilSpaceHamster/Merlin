@@ -1,0 +1,40 @@
+<div class="modal" style="display:none;" id="edit_modal">
+	<div class="modal-header">
+		<h3><span id="changeType">Edit</span> Route</h3>
+	</div>
+	<div class="modal-body">
+		<form>
+			<input id="edit_id" name="id" type="hidden"/>
+			URL
+			<span style="font-size:10px;color:#ababab;" class="help-inline">This will be used to access the page.</span><br/>
+			<input id="edit_uri" style="width:100%;" name="uri" type="text"/>
+			<br/>
+
+			Title
+			<span style="font-size:10px;color:#ababab;" class="help-inline">This will be used as the title of the page</span><br/>
+			<input id="edit_title" style="width:100%;" name="title" type="text"/>
+			<br/>
+
+			Description
+			<span style="font-size:10px;color:#ababab;" class="help-inline">This will be used as a summary for the page.</span><br/>
+			<textarea id="edit_description" style="width:100%;" name="description"></textarea>
+			<br/>
+
+			Keywords
+			<span style="font-size:10px;color:#ababab;" class="help-inline">These will be used to search. (comma separated)</span><br/>
+			<input id="edit_keywords" style="width:100%;" name="title" type="text"/>
+			<br/>
+
+			Handler
+			<span style="font-size:10px;color:#ababab;" class="help-inline">This describes the functionality of the page.</span><br/>
+			<input id="edit_handlerName" style="width:100%;" name="handlerName" type="text"/>
+
+			Authorisation
+			<span style="font-size:10px;color:#ababab;" class="help-inline">This defines the access level to the page.</span><br/>
+			<input id="edit_authorisation" style="width:100%;" name="authorisation" type="text"/>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<a class="btn btn-primary saveRoute">Save</a>
+	</div>
+</div>

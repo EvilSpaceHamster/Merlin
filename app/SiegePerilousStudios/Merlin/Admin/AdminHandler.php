@@ -12,7 +12,8 @@ class AdminHandler extends \SiegePerilousStudios\Merlin\ManagedRouter\RouteHandl
 		
 		$this->globalTemplate = "admin/global.twig";
 		
-		$this->render();
+		return $this->render();
+		
 	}
 }
 

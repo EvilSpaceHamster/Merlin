@@ -27,7 +27,6 @@ class Router {
 		$dm = $this->app->getDatabase();
 		$route = $dm->createQueryBuilder("SiegePerilousStudios\\Merlin\\ManagedRouter\\Model\\Route")
 				->field("uri")->equals($this->uri)
-				->field("status")->equals("active")
 				->getQuery()
 				->getSingleResult();
 		

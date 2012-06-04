@@ -17,6 +17,7 @@ class URLManagementHandler extends \SiegePerilousStudios\Merlin\ManagedRouter\Ro
 		$dm = $this->app->getDatabase();
 		
 		$routes = $dm->createQueryBuilder('\SiegePerilousStudios\Merlin\ManagedRouter\Model\Route')
+				->sort("uri")
 				->getQuery()
 				->execute();
 		
@@ -26,8 +27,6 @@ class URLManagementHandler extends \SiegePerilousStudios\Merlin\ManagedRouter\Ro
 		
 		$this->globalTemplate = "admin/global.twig";
 		$this->templateFile = "admin/URLManagement/index.twig";
-		$this->render();
+		return $this->render();
 	}
 }
-
-?>

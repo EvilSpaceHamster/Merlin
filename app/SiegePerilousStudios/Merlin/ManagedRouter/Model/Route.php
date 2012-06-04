@@ -14,7 +14,7 @@ class Route {
 	public $id;
 	
 	
-	/** @ODM\String @ODM\Index */
+	/** @ODM\String @ODM\UniqueIndex */
 	public $uri;
 	
 	/** @ODM\String */
@@ -31,9 +31,6 @@ class Route {
 	
 	/** @ODM\String */
 	public $language;
-	
-	/** @ODM\String */
-	public $status;
 	
 	/** @ODM\String */
 	public $authorisation;

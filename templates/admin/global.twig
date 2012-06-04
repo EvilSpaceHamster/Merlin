@@ -3,19 +3,25 @@
 		<title>{{ page.title }}</title>
 		<meta name="keywords" content="{{ page.keywords }}"/>
 		<meta name="description" content="{{ page.description }}"/>
-		<link rel="stylesheet" href="{{ page.staticURL }}/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="{{ page.staticURL }}css/bootstrap.min.css"/>
+		<script src="{{page.staticURL}}js/jquery-1.7.2.min.js"></script>
+		<script src="{{page.staticURL}}js/bootstrap.min.js"></script>
+		<script>
+			window.staticURL = "{{page.staticURL}}";
+			window.baseURL = "{{page.baseURL}}";
+		</script>
 	</head>
 	<body style="background: #fff url({{ page.staticURL }}/img/groovepaper.png) repeat">
 		<div class="navbar navbar-fixed-top">
-			<div class="navbar-inner" style="background: url({{ page.staticURL }}/img/dark_wood.png) repeat">
+			<div class="navbar-inner">
 				<div class="container">
 					<a class="brand" href="{{ page.baseURL }}admin/" >Merlin</a>
 					<ul class="nav">
-						<li><a {% if page.currentURL == "/admin/pages/" %} class="active" {% endif %} href="{{ page.baseURL }}admin/pages">Pages</a></li>
-						<li><a {% if page.currentURL == "/admin/posts/" %} class="active" {% endif %} href="{{ page.baseURL }}admin/posts/">Posts</a></li>
-						<li><a {% if page.currentURL == "/admin/templates/" %} class="active" {% endif %} href="{{ page.baseURL }}admin/templates/">Templates</a></li>
-						<li><a {% if page.currentURL == "/admin/gallery/" %} class="active" {% endif %} href="{{ page.baseURL }}admin/gallery/">Gallery</a></li>
-						<li><a {% if page.currentURL == "/admin/url/" %} class="active" {% endif %} href="{{ page.baseURL }}admin/url/">URL Management</a></li>
+						<li {% if page.currentURL == "/admin/pages/" %} class="active" {% endif %} ><a href="{{ page.baseURL }}admin/pages">Pages</a></li>
+						<li {% if page.currentURL == "/admin/posts/" %} class="active" {% endif %} ><a href="{{ page.baseURL }}admin/posts/">Posts</a></li>
+						<li {% if page.currentURL == "/admin/templates/" %} class="active" {% endif %}><a href="{{ page.baseURL }}admin/templates/">Templates</a></li>
+						<li {% if page.currentURL == "/admin/gallery/" %} class="active" {% endif %}><a href="{{ page.baseURL }}admin/gallery/">Gallery</a></li>
+						<li {% if page.currentURL == "/admin/url/" %} class="active" {% endif %}><a href="{{ page.baseURL }}admin/url/">URL Management</a></li>
 						<li><a style="color:#ff5c59">{{page.appState|upper}} MODE</a></li>
 					</ul>
 				</div>
@@ -28,7 +34,5 @@
 				<p>Merlin &copy; Siege Perilous Studios 2012</p>
 			</footer>
 		</div>
-		<script src="{{page.staticURL}}/js/jquery-1.7.2.min.js"></script>
-		<script src="{{page.staticURL}}/js/bootstrap.min.js"></script>
 	</body>
 </html>
