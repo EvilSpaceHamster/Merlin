@@ -2,3 +2,4 @@ vendor/
 composer.phar
 logs/
 cache/
+.DS_Store
